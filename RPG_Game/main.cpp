@@ -1,54 +1,42 @@
-#include <iostream>
+#include <SFML/Graphics.hpp>
 
-class Enemy
-{
-public:
-	int health = 0;
-	int damage = 0;
-
-	void kill()
-	{
-		std::cout << "I am killing" << std::endl;
-	}
-
-	void Heal()
-	{
-		health += 10;
-		std::cout << "My health is now " << health << std::endl;
-	}
-
-	void Walk()
-	{
-		std::cout << "I am walking!" << std::endl;
-	}
-};
 int main()
 {
+	// Initialize and create the window
+	sf::RenderWindow window(sf::VideoMode(800, 600), "RPG Game");
 
-	Enemy goblin;
+	// Main game loop
+	while (window.isOpen())
+	{
 
-	goblin.health = 100;
-	goblin.damage = 50;
-	goblin.Walk();
+		//--------------------------------------- / BEGIN UPDATE \ ---------------------------------|
 
-	std::cout << "Goblin stats are: " << std::endl;
-	std::cout << goblin.health << std::endl;
-	std::cout << goblin.damage << std::endl;
+		// Check all the window's events that were triggered since the last iteration of the loop
+		sf::Event event;
+		while (window.pollEvent(event))
+		{
 
-	std::cout << goblin.health << std::endl;
+			// "close requested" event: we close the window
+			if (event.type == sf::Event::Closed)
+				window.close();
 
-	goblin.Heal();
+		}
 
-	//--------------------------------------
+		//---------------------------------------- \ END UPDATE / -----------------------------------|
 
-	Enemy dragon;
-	dragon.health = 200;
-	dragon.damage = 60;
+		//---------------------------------------- / BEGIN DRAW \ -----------------------------------|
 
-	std::cout << "Dragon stats are: " << std::endl;
-	std::cout << dragon.health << std::endl;
-	std::cout << dragon.damage << std::endl;
+		// clear the window with black color
+		window.clear(sf::Color::Red);
+
+		// draw everthinghere...
+		// window.draw(...);
+
+		// end the current frame
+		window.display();
+
+		//---------------------------------------- \ END DRAW / --------------------------------------|
+	}
 
 	return 0;
 }
-
